@@ -3,19 +3,20 @@ import {
     showElement, 
     setScreen} from './lib/code.org.js';
 
-let carteira = 200; 
+let carteira = 0; 
 let extrato = " "; 
 const comida = 20; 
 const circo = 15; 
 const brinquedo = 13; 
-
-// valor da carteira deve ser 200 reais 
-// perguntar ao usuario quanto ele quer economizar 
-let economia = prompt ("Quanto você gostaria de economizar?");
+let economia = 0;
 
 
-
-// gerenciar os gastos atraves dos cliques dos tres botoes 
+onEvent("reset", "click", () => {
+    carteira = document.querySelector("#dinheiro").value;
+    economia = document.querySelector("#economia").value;
+    extrato = ""; 
+    document.querySelector("#wallet").innerHTML = carteira;
+})
 
 onEvent("comida","click", () =>{
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
@@ -23,7 +24,7 @@ onEvent("comida","click", () =>{
     extrato += comida + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
     if(carteira < 0){
-        walletColor();
+        document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
     }
 });
 onEvent("brinquedo","click", () => {
@@ -32,7 +33,7 @@ onEvent("brinquedo","click", () => {
     extrato += brinquedo + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
     if(carteira < 0){
-        walletColor();
+        document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
     }
 
 })
@@ -42,7 +43,7 @@ onEvent("circo","click", () => {
     extrato += brinquedo + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
     if(carteira < 0){
-        walletColor();
+        document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
     }
 })
 
@@ -50,15 +51,9 @@ onEvent("go-extrato", "click", () => {
     alert(extrato);
 })
 
-onEvent("reset", "click", () => {
-    carteira = 200;
-    extrato = ""; 
-    document.querySelector("#wallet").innerHTML = carteira;
-})
 
-const walletColor = () => {
-   document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
-}
+
+
 
 
 

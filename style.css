@@ -1,12 +1,36 @@
-img {
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@400;700&family=Nunito&display=swap');
+  
+  header h1{
+    font-family: 'Nunito', sans-serif;
+  }
+
+  img {
     width: 50px;
   }
+
   main{
     
     margin: 8vh auto; 
     max-height: 800;
     max-width: 360px;
   }
+
+  #gastos{
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  #gastos input{
+    border-radius: 5px; 
+  }
+  .gastos-card{
+    margin: 2vw; 
+    font-weight: 700;
+    font-size: 1vw; 
+    font-family: 'Josefin Slab', serif;
+  }
+
   picture {
     display: flex;
     justify-content: space-evenly;
@@ -62,10 +86,24 @@ img {
     padding: 0;
   }
   
-  section :is(button, img) {
-    border-radius: 100%;
+  section button{
+    border: none; 
+    border-radius: 15px;
+    width: 5vw; 
+    height: 5vw;
   }
+
+  section img{
+    width: 4vw;
+    height: 4vw; 
+  }
+
   
+  .tipo-card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1vh; 
+    margin: 1vw; 
+  }
   
   .flex {
     display: flex;

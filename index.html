@@ -13,6 +13,16 @@
           <h1>Gerenciador de Viagem</h1>
         </header>
         
+        <section id="gastos">
+          <div class="gastos-card">
+            <label for="dinheiro">Digite Quanto você possui: </label>
+            <input type="text" name="dinheiro" id="dinheiro">
+          </div>
+          <div class="gastos-card">
+            <label for="economias">Digite Quanto você quer economizar: </label>
+            <input type="text" name="economias" id="economias">
+          </div>
+        </section>
         <picture class="wallet-picture">
           <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/wallet.png?t=1655228121000" alt="Carteira">
           
@@ -21,19 +31,19 @@
         
         <section>
           <ul class="flex">
-            <li>
+            <li class="tipo-card">
               <h3>Comida</h3>
               <button id="comida">
                 <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/pizza.png?t=1655228121000" alt="Comida">
               </button>
             </li>
-            <li>
+            <li class="tipo-card">
               <h3>Brinquedo</h3>
               <button id="brinquedo">
                 <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/ride.png?t=1655228121000" alt="Briquedo">
               </button>
             </li>
-            <li>
+            <li class="tipo-card">
               <h3>Circo</h3>
               <button id="circo">
                 <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/character.png?t=1655228120000" alt="Circo">
@@ -43,7 +53,7 @@
         </section>
         <footer>
           <button id="go-extrato">Extrato</button>
-          <button id="reset">Recomeçar</button>
+          <button id="reset">Começar</button>
         </footer>
       </main>
       <script src="app.js" type="module"></script>
