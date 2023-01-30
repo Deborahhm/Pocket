@@ -19,41 +19,47 @@
             <input type="text" name="dinheiro" id="dinheiro">
           </div>
           <div class="gastos-card">
-            <label for="economias">Digite Quanto você quer economizar: </label>
+            <label for="economias">Digite Quanto quer economizar: </label>
             <input type="text" name="economias" id="economias">
           </div>
         </section>
         <picture class="wallet-picture">
           <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/wallet.png?t=1655228121000" alt="Carteira">
           
-          <span id="wallet-button" class="wallet-button">R$ <span id="wallet">200</span></span>
+          <span id="wallet-button" class="black-button wallet-button">R$ <span id="wallet">Valor</span></span>
         </picture>
         
         <section>
           <ul class="flex">
             <li class="tipo-card">
               <h3>Comida</h3>
-              <button id="comida">
                 <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/pizza.png?t=1655228121000" alt="Comida">
-              </button>
+                <div class="valor-card">
+                  <label for="food">R$: </label><input type="text" name="RS" id="food">
+                </div>
+              <button id="comida" class="card-button black-button">Debitar</button>
             </li>
             <li class="tipo-card">
               <h3>Brinquedo</h3>
-              <button id="brinquedo">
                 <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/ride.png?t=1655228121000" alt="Briquedo">
-              </button>
+                <div class="valor-card">
+                  <label for="fun">R$: </label><input type="text" name="RS" id="fun">
+                </div>
+              <button id="brinquedo" class="card-button black-button">Debitar</button>
             </li>
             <li class="tipo-card">
-              <h3>Circo</h3>
-              <button id="circo">
-                <img src="https://studio.code.org/v3/assets/zgHYxcMPVlqog0epABtslttb63j0Ww9hKIzVDNgx_oE/character.png?t=1655228120000" alt="Circo">
-              </button>
+              <h3>Saúde</h3>
+                <img src="https://cdn-icons-png.flaticon.com/512/2966/2966486.png" alt="saúde">
+                <div class="valor-card">
+                  <label for="health">R$: </label><input type="text" name="RS" id="health">
+                </div>
+              <button id="saude" class="card-button black-button">Debitar</button>
             </li>
           </ul>
         </section>
         <footer>
-          <button id="go-extrato">Extrato</button>
-          <button id="reset">Começar</button>
+          <button id="go-extrato" class="black-button">Extrato</button>
+          <button id="reset" class="black-button">Começar</button>
         </footer>
       </main>
       <script src="app.js" type="module"></script>

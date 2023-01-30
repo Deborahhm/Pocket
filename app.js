@@ -1,47 +1,61 @@
 import {
-    onEvent, 
-    showElement, 
-    setScreen} from './lib/code.org.js';
+    onEvent 
+} from './lib/code.org.js';
 
 let carteira = 0; 
 let extrato = " "; 
-const comida = 20; 
-const circo = 15; 
-const brinquedo = 13; 
+const comida = 0; 
+const saude = 0; 
+const brinquedo = 0; 
 let economia = 0;
 
 
 onEvent("reset", "click", () => {
     carteira = document.querySelector("#dinheiro").value;
-    economia = document.querySelector("#economia").value;
+    economia = document.querySelector("#economias").value;
     extrato = ""; 
-    document.querySelector("#wallet").innerHTML = carteira;
+    
 })
 
+onEvent("reset", "click", () => {
+    document.querySelector("#wallet").innerHTML = carteira;
+    document.querySelector("#dinheiro").value = " ";
+    document.querySelector("#economias").value = " ";
+})
+
+
+
 onEvent("comida","click", () =>{
+    let comida = document.querySelector("#food").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     carteira -= comida; 
     extrato += comida + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
-    if(carteira < 0){
-        document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
-    }
+    document.querySelector("#food").value = " ";    
 });
+
+
 onEvent("brinquedo","click", () => {
+    let brinquedo = document.querySelector("#fun").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     carteira -= brinquedo;
     extrato += brinquedo + " reais debitados na sua conta \n"; 
+    document.querySelector("#fun").value = " ";
     document.querySelector("#wallet").innerHTML = carteira;
     if(carteira < 0){
         document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
     }
 
 })
-onEvent("circo","click", () => {
+
+
+onEvent("saude","click", () => {
+    let saude =  document.querySelector("#health").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n";
-    carteira -= circo; 
+    carteira -= saude; 
     extrato += brinquedo + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
+    document.querySelector("#health").value = " ";
     if(carteira < 0){
         document.querySelector("#wallet-button").style.backgroundCollor = "#FA3E4C";
     }
