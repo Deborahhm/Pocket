@@ -117,8 +117,10 @@
     border-radius: 12px;
   }
 
-  .tipo-card h3{
-    text-align: center;
+  @media screen and (max-width: 600px) {
+    .tipo-card {
+      height: 30vh; 
+    }
   }
 
   .tipo-card button{
