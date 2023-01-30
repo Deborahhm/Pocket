@@ -31,7 +31,7 @@ onEvent("comida","click", () =>{
     let comida = document.querySelector("#food").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - comida;
-    if(condicao > 0){
+    if(condicao > 0 &&(brinquedo != NaN)){
         carteira -= comida; 
         extrato += comida + " reais debitados na sua conta \n"; 
         document.querySelector("#wallet").innerHTML = carteira;
@@ -40,8 +40,10 @@ onEvent("comida","click", () =>{
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
             alert("Você Gastou mais do que queria economizar");
         }
+    }else if(condicao < 0){
+        alert("Você não tem mais dinheiro");         
     }else{
-        alert("Você não tem mais dinheiro"); 
+        alert("Isso não é um número!")
     }
 });
 
@@ -50,7 +52,7 @@ onEvent("brinquedo","click", () => {
     let brinquedo = document.querySelector("#fun").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - brinquedo;
-   if(condicao > 0){
+   if(condicao > 0 &&(brinquedo != NaN)){
         carteira -= brinquedo;
         extrato += brinquedo + " reais debitados na sua conta \n"; 
         document.querySelector("#fun").value = " ";
@@ -59,9 +61,11 @@ onEvent("brinquedo","click", () => {
             alert("Você Gastou mais do que queria economizar");
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
         }
-   }else{
-        alert("Você não tem mais dinheiro"); 
-    }
+   }else if(condicao < 0){
+        alert("Você não tem mais dinheiro");         
+    }else{
+        alert("Isso não é um número!")
+    }   
 })
 
 
@@ -74,12 +78,14 @@ onEvent("saude","click", () => {
     extrato += brinquedo + " reais debitados na sua conta \n"; 
     document.querySelector("#wallet").innerHTML = carteira;
     document.querySelector("#health").value = " ";
-    if(carteira <= economia){
+    if(condicao >= 0 &&(brinquedo != NaN)){
         document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
         alert("Você Gastou mais do que queria economizar");
     }
-    }else{
+    }else if(condicao < 0){
         alert("Você não tem mais dinheiro");         
+    }else{
+        alert("Isso não é um número!")
     }
 })
 
