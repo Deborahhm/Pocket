@@ -1,5 +1,7 @@
 import {
-    onEvent 
+    onEvent,
+    getProperty,
+    setProperty
 } from './lib/code.org.js';
 
 let carteira = 0; 
@@ -14,9 +16,7 @@ onEvent("reset", "click", () => {
     carteira = document.querySelector("#dinheiro").value;
     economia = document.querySelector("#economias").value;
     extrato = ""; 
-    document.querySelector("#food").value = " ";  
-    document.querySelector("#fun").value = " ";  
-    document.querySelector("#health").value = " ";  
+    cleanValue();  
     document.querySelector("#wallet").innerHTML = carteira;
     document.querySelector("#dinheiro").value = " ";
     document.querySelector("#economias").value = " ";
@@ -25,14 +25,12 @@ onEvent("reset", "click", () => {
 
 
 
-
-
 onEvent("comida","click", () =>{
     let comida = document.querySelector("#food").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - comida;
     alertaUsuario(condicao, comida);
-    document.querySelector("#food").value = " ";  
+    cleanValue();  
 });
 
 
@@ -41,7 +39,7 @@ onEvent("brinquedo","click", () => {
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - brinquedo;
     alertaUsuario(condicao, brinquedo);  
-    document.querySelector("#fun").value = " ";  
+    cleanValue();  
 })
 
 
@@ -50,7 +48,7 @@ onEvent("saude","click", () => {
     extrato += "Saldo Atual: " + carteira + " reais. \n";
     let condicao = carteira - saude;
     alertaUsuario(condicao, saude); 
-    document.querySelector("#health").value = " ";  
+    cleanValue(); 
 })
 
 onEvent("go-extrato", "click", () => {
@@ -59,7 +57,11 @@ onEvent("go-extrato", "click", () => {
 
 
 
-
+function cleanValue() {
+    document.querySelector("#food").value = " ";
+    document.querySelector("#fun").value = " ";
+    document.querySelector("#health").value = " ";
+}
 
 
 
