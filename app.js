@@ -32,6 +32,7 @@ onEvent("comida","click", () =>{
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - comida;
     alertaUsuario(condicao, comida);
+    document.querySelector("#food").value = " ";  
 });
 
 
@@ -39,7 +40,8 @@ onEvent("brinquedo","click", () => {
     let brinquedo = document.querySelector("#fun").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - brinquedo;
-    alertaUsuario(condicao, brinquedo);
+    alertaUsuario(condicao, brinquedo);  
+    document.querySelector("#fun").value = " ";  
 })
 
 
@@ -47,7 +49,8 @@ onEvent("saude","click", () => {
     let saude =  document.querySelector("#health").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n";
     let condicao = carteira - saude;
-    alertaUsuario(condicao, saude);
+    alertaUsuario(condicao, saude); 
+    document.querySelector("#health").value = " ";  
 })
 
 onEvent("go-extrato", "click", () => {
