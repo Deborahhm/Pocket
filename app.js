@@ -1,5 +1,6 @@
 import {
     onEvent,
+    alertaUsuario,
     getProperty,
     setProperty
 } from './lib/code.org.js';
@@ -54,7 +55,7 @@ onEvent("go-extrato", "click", () => {
 
 
 
-function cleanValue() {
+const cleanValue = () => {
     document.querySelector("#food").value = " ";
     document.querySelector("#fun").value = " ";
     document.querySelector("#health").value = " ";
@@ -70,18 +71,13 @@ const alertaUsuario = (id, carteira, economia) => {
         if(carteira <= economia){
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
             alert("Você Gastou mais do que queria economizar");
-            return carteira;
-        }else{
-            return carteira;
+            
         }
     }else if((condicao < 0) &&(id != NaN)){
         alert("Você não tem mais dinheiro");
-        return carteira; 
     }else if(id === NaN){
         alert("Isso não é um número!");
-        return carteira;
     }
-}
+    return carteira;
+};
 
-// cada gasto deve diminuir o valor inicia da carteira 
-// quando o valor da carteira chega menor ou igual ao valor dito pelo usuário a tela ficar vermelha
