@@ -27,27 +27,24 @@ onEvent("reset", "click", () => {
 
 onEvent("comida","click", () =>{
     let comida = document.querySelector("#food").value;
-    extrato += "Saldo Atual: " + carteira + " reais. \n"; 
-    let condicao = carteira - comida;
-    alertaUsuario(condicao, comida);
+    carteira = alertaUsuario(comida, carteira, economia);
+    document.querySelector("#wallet").innerHTML = carteira;
     cleanValue();  
 });
 
 
 onEvent("brinquedo","click", () => {
-    let brinquedo = document.querySelector("#fun").value;
-    extrato += "Saldo Atual: " + carteira + " reais. \n"; 
-    let condicao = carteira - brinquedo;
-    alertaUsuario(condicao, brinquedo);  
+    let brinquedo = document.querySelector("#fun").value; 
+    carteira = alertaUsuario(brinquedo, carteira, economia);
+    document.querySelector("#wallet").innerHTML = carteira;
     cleanValue();  
 })
 
 
 onEvent("saude","click", () => {
     let saude =  document.querySelector("#health").value;
-    extrato += "Saldo Atual: " + carteira + " reais. \n";
-    let condicao = carteira - saude;
-    alertaUsuario(condicao, saude); 
+    carteira = alertaUsuario(saude, carteira, economia);
+    document.querySelector("#wallet").innerHTML = carteira;
     cleanValue(); 
 })
 
@@ -57,7 +54,7 @@ onEvent("go-extrato", "click", () => {
 
 
 
-function clean() {
+function cleanValue() {
     document.querySelector("#food").value = " ";
     document.querySelector("#fun").value = " ";
     document.querySelector("#health").value = " ";
@@ -65,22 +62,26 @@ function clean() {
 
 //terminar essa parte aqui 
 
-
-function alertaUsuario(condicao, comida) {
-    if (condicao > 0 && (comida != NaN)) {
-        carteira -= comida;
-        extrato += comida + " reais debitados na sua conta \n";
-        document.querySelector("#wallet").innerHTML = carteira;
-        document.querySelector("#food").value = " ";
-        if (carteira <= economia) {
+const alertaUsuario = (id, carteira, economia) => {
+    extrato += "Saldo Atual: " + carteira + " reais. \n";
+    if((carteira - id >= 0) && (id != NaN)) {
+        carteira -= id;
+        extrato += id + " reais debitados na sua conta \n";
+        if(carteira <= economia){
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
             alert("Você Gastou mais do que queria economizar");
+            return carteira;
+        }else{
+            return carteira;
         }
-    } else if (condicao < 0) {
+    }else if((condicao < 0) &&(id != NaN)){
         alert("Você não tem mais dinheiro");
-    } else {
+        return carteira; 
+    }else if(id === NaN){
         alert("Isso não é um número!");
+        return carteira;
     }
 }
+
 // cada gasto deve diminuir o valor inicia da carteira 
 // quando o valor da carteira chega menor ou igual ao valor dito pelo usuário a tela ficar vermelha

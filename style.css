@@ -111,7 +111,7 @@
 
   
   .tipo-card{
-    height: 32vh;
+    height: 250px;
     min-width: 110px; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 5vh 1vh; 
@@ -119,11 +119,7 @@
     border-radius: 12px;
   }
 
-  @media screen and (max-width: 600px) {
-    .tipo-card {
-      height: 40vh; 
-    }
-  }
+  
 
   .tipo-card button{
     display: flex; 
