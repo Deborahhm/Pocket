@@ -109,7 +109,7 @@
 
   
   .tipo-card{
-    height: 23vh;
+    height: 32vh;
     min-width: 110px; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     padding: 5vh 1vh; 
@@ -119,7 +119,7 @@
 
   @media screen and (max-width: 600px) {
     .tipo-card {
-      height: 30vh; 
+      height: 35vh; 
     }
   }
 

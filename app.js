@@ -31,20 +31,7 @@ onEvent("comida","click", () =>{
     let comida = document.querySelector("#food").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - comida;
-    if(condicao > 0 &&(brinquedo != NaN)){
-        carteira -= comida; 
-        extrato += comida + " reais debitados na sua conta \n"; 
-        document.querySelector("#wallet").innerHTML = carteira;
-        document.querySelector("#food").value = " ";    
-        if(carteira <= economia){
-            document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
-            alert("Você Gastou mais do que queria economizar");
-        }
-    }else if(condicao < 0){
-        alert("Você não tem mais dinheiro");         
-    }else{
-        alert("Isso não é um número!")
-    }
+    alertaUsuario(condicao, comida);
 });
 
 
@@ -52,20 +39,7 @@ onEvent("brinquedo","click", () => {
     let brinquedo = document.querySelector("#fun").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n"; 
     let condicao = carteira - brinquedo;
-   if(condicao > 0 &&(brinquedo != NaN)){
-        carteira -= brinquedo;
-        extrato += brinquedo + " reais debitados na sua conta \n"; 
-        document.querySelector("#fun").value = " ";
-        document.querySelector("#wallet").innerHTML = carteira;
-        if(carteira <= economia){
-            alert("Você Gastou mais do que queria economizar");
-            document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
-        }
-   }else if(condicao < 0){
-        alert("Você não tem mais dinheiro");         
-    }else{
-        alert("Isso não é um número!")
-    }   
+    alertaUsuario(condicao, brinquedo);
 })
 
 
@@ -73,20 +47,7 @@ onEvent("saude","click", () => {
     let saude =  document.querySelector("#health").value;
     extrato += "Saldo Atual: " + carteira + " reais. \n";
     let condicao = carteira - saude;
-    if(condicao > 0){
-    carteira -= saude; 
-    extrato += brinquedo + " reais debitados na sua conta \n"; 
-    document.querySelector("#wallet").innerHTML = carteira;
-    document.querySelector("#health").value = " ";
-    if(condicao >= 0 &&(brinquedo != NaN)){
-        document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
-        alert("Você Gastou mais do que queria economizar");
-    }
-    }else if(condicao < 0){
-        alert("Você não tem mais dinheiro");         
-    }else{
-        alert("Isso não é um número!")
-    }
+    alertaUsuario(condicao, saude);
 })
 
 onEvent("go-extrato", "click", () => {
@@ -99,5 +60,22 @@ onEvent("go-extrato", "click", () => {
 
 
 
+
+function alertaUsuario(condicao, comida) {
+    if (condicao > 0 && (brinquedo != NaN)) {
+        carteira -= comida;
+        extrato += comida + " reais debitados na sua conta \n";
+        document.querySelector("#wallet").innerHTML = carteira;
+        document.querySelector("#food").value = " ";
+        if (carteira <= economia) {
+            document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
+            alert("Você Gastou mais do que queria economizar");
+        }
+    } else if (condicao < 0) {
+        alert("Você não tem mais dinheiro");
+    } else {
+        alert("Isso não é um número!");
+    }
+}
 // cada gasto deve diminuir o valor inicia da carteira 
 // quando o valor da carteira chega menor ou igual ao valor dito pelo usuário a tela ficar vermelha
