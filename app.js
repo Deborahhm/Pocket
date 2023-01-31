@@ -57,17 +57,17 @@ onEvent("go-extrato", "click", () => {
 
 
 
-function cleanValue() {
+function clean() {
     document.querySelector("#food").value = " ";
     document.querySelector("#fun").value = " ";
     document.querySelector("#health").value = " ";
 }
 
-
+//terminar essa parte aqui 
 
 
 function alertaUsuario(condicao, comida) {
-    if (condicao > 0 && (brinquedo != NaN)) {
+    if (condicao > 0 && (comida != NaN)) {
         carteira -= comida;
         extrato += comida + " reais debitados na sua conta \n";
         document.querySelector("#wallet").innerHTML = carteira;
