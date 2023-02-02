@@ -1,5 +1,6 @@
 import {
     onEvent,
+    redAlert,
     getProperty,
     getPropertyValue,
     setProperty,
@@ -7,7 +8,7 @@ import {
 } from './lib/code.org.js';
 
 let carteira = 0; 
-let extrato = " "; 
+let extrato = [];
 const comida = 0; 
 const saude = 0; 
 const brinquedo = 0; 
@@ -19,7 +20,7 @@ onEvent("reset", "click", () => {
     economia = getPropertyValue("economias");
     console.log(carteira);
     console.log(economia);
-    extrato = ""; 
+    extrato = []; 
     cleanValue();  
     setProperty("wallet", carteira);
     setPropertyValue("dinheiro", "");
@@ -31,13 +32,10 @@ onEvent("reset", "click", () => {
 
 //Quando o botao comida é clicado exucuta 
 onEvent("comida","click", () =>{
-    //pega o valor do input para reduzir da carteira
     let comida = getPropertyValue("food");
-    //chama a funcao para atualizar a carteira (ver funcao)
     carteira = atualizaCarteira(comida, carteira, economia);
-    //atualiza o valor da carteira 
+    atualizaExtrato("comida");
     setProperty("wallet", carteira);
-    //limpa o valor digitado no input (ver funcao)
     cleanValue();  
 });
 
@@ -45,6 +43,7 @@ onEvent("comida","click", () =>{
 onEvent("brinquedo","click", () => {
     let brinquedo = getPropertyValue("fun"); 
     carteira = atualizaCarteira(brinquedo, carteira, economia);
+    atualizaExtrato("brinquedo");
     setProperty("wallet", carteira);
     cleanValue();  
 })
@@ -53,16 +52,37 @@ onEvent("brinquedo","click", () => {
 onEvent("saude","click", () => {
     let saude = getPropertyValue("health"); 
     carteira = atualizaCarteira(saude, carteira, economia);
+    atualizaExtrato("saude");
     setProperty("wallet", carteira);
     cleanValue(); 
 })
 
 
 //imprime o extrato quando o botao é clicado
-onEvent("go-extrato", "click", () => {
-    alert(extrato);
-})
 
+onEvent("go-extrato", "click", () => {
+    if (Object.values(extrato).every((el) => el.valor == 0)) {
+      alert("Você ainda não gastou nada...");
+    } else {
+      let resultado = "";
+      extrato.forEach((lancamento) => {
+        resultado += `
+        <b>Item: ${lancamento.tipo}</b>
+        Valor: R$ ${lancamento.valor}
+        Data: ${lancamento.dia}
+        `;
+      });
+      alert(resultado);
+    }
+  });
+  
+const atualizaExtrato = (id) => {
+    extrato.push({
+      tipo: id,
+      valor: CUSTO[id],
+      dia: new Date().toLocaleDateString(),
+    });
+  };
 
 //limpa o valor digitado no input
 const cleanValue = () => {
@@ -74,21 +94,14 @@ const cleanValue = () => {
 
 
 const atualizaCarteira = (id, carteira, economia) => {
-    extrato += "Saldo Atual: " + carteira + " reais. \n";
-    //Se o valor final for maior que zero, tire o valor da carteira
     if((carteira - id >= 0) && (id != NaN)) {
         carteira -= id;
-        extrato += id + " reais debitados na sua conta \n";
-        //se o valor for menor que o valor que queremos economizar, deixe o botao vermelho
-        if(carteira <= economia){
-            document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
-            alert("Você Gastou mais do que queria economizar");        
+        if(carteira <= economia){        
+            redAlert("wallet-button", "#FA3E4C"); 
         }
-        //Se o valor for menor que zero nao debite nada, pq obviamente voce nao tem dinheiro.
     }else if((condicao < 0) &&(id != NaN)){
         alert("Você não tem mais dinheiro");
     }else if(id === NaN){
-        //checa para saber se o usuario nao digitou besteira
         alert("Isso não é um número!");
     }
     return carteira;
