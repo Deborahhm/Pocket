@@ -9,9 +9,7 @@ import {
 
 let carteira = 0; 
 let extrato = [];
-const comida = 0; 
-const saude = 0; 
-const brinquedo = 0; 
+let valor = 0; 
 let economia = 0;
 
 //carrega o valor digitado na carteira e limpa os campos de input de economia e carteira
@@ -30,29 +28,29 @@ onEvent("reset", "click", () => {
 })
 
 
-//Quando o botao comida é clicado exucuta 
+//Quando o botao valor é clicado exucuta 
 onEvent("comida","click", () =>{
-    let comida = getPropertyValue("food");
-    carteira = atualizaCarteira(comida, carteira, economia);
-    atualizaExtrato("comida");
+    let valor = getPropertyValue("food");
+    carteira = atualizaCarteira(valor, carteira, economia);
+    atualizaExtrato("valor", valor);
     setProperty("wallet", carteira);
     cleanValue();  
 });
 
 
 onEvent("brinquedo","click", () => {
-    let brinquedo = getPropertyValue("fun"); 
-    carteira = atualizaCarteira(brinquedo, carteira, economia);
-    atualizaExtrato("brinquedo");
+    let valor = getPropertyValue("fun"); 
+    carteira = atualizaCarteira(valor, carteira, economia);
+    atualizaExtrato("brinquedo", valor);
     setProperty("wallet", carteira);
     cleanValue();  
 })
 
 
 onEvent("saude","click", () => {
-    let saude = getPropertyValue("health"); 
-    carteira = atualizaCarteira(saude, carteira, economia);
-    atualizaExtrato("saude");
+    let valor = getPropertyValue("health"); 
+    carteira = atualizaCarteira(valor, carteira, economia);
+    atualizaExtrato("valor", valor);
     setProperty("wallet", carteira);
     cleanValue(); 
 })
@@ -62,7 +60,7 @@ onEvent("saude","click", () => {
 
 onEvent("go-extrato", "click", () => {
     if (Object.values(extrato).every((el) => el.valor == 0)) {
-      alert("Você ainda não gastou nada...");
+      alert("Você não gastou nada...");
     } else {
       let resultado = "";
       extrato.forEach((lancamento) => {
@@ -76,10 +74,10 @@ onEvent("go-extrato", "click", () => {
     }
   });
   
-const atualizaExtrato = (id) => {
+const atualizaExtrato = (id, valorId) => {
     extrato.push({
       tipo: id,
-      valor: CUSTO[id],
+      valor: valorId,
       dia: new Date().toLocaleDateString(),
     });
   };
