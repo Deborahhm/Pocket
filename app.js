@@ -1,12 +1,11 @@
 import {
     onEvent,
-    alertaUsuario,
     getProperty,
     setProperty
 } from './lib/code.org.js';
 
 let carteira = 0; 
-let extrato = []; 
+let extrato = " "; 
 const comida = 0; 
 const saude = 0; 
 const brinquedo = 0; 
@@ -30,7 +29,7 @@ onEvent("comida","click", () =>{
     //pega o valor do input para reduzir da carteira
     let comida = document.querySelector("#food").value;
     //chama a funcao para atualizar a carteira (ver funcao)
-    carteira = AtualizaCarteira(comida, carteira, economia);
+    carteira = atualizaCarteira(comida, carteira, economia);
     //atualiza o valor da carteira 
     document.querySelector("#wallet").innerHTML = carteira;
     //limpa o valor digitado no input (ver funcao)
@@ -40,7 +39,7 @@ onEvent("comida","click", () =>{
 
 onEvent("brinquedo","click", () => {
     let brinquedo = document.querySelector("#fun").value; 
-    carteira = AtualizaCarteira(brinquedo, carteira, economia);
+    carteira = atualizaCarteira(brinquedo, carteira, economia);
     document.querySelector("#wallet").innerHTML = carteira;
     cleanValue();  
 })
@@ -48,7 +47,7 @@ onEvent("brinquedo","click", () => {
 
 onEvent("saude","click", () => {
     let saude =  document.querySelector("#health").value;
-    carteira = AtualizaCarteira(saude, carteira, economia);
+    carteira = atualizaCarteira(saude, carteira, economia);
     document.querySelector("#wallet").innerHTML = carteira;
     cleanValue(); 
 })
@@ -69,12 +68,12 @@ const cleanValue = () => {
 
 
 
-const AtualizaCarteira = (id, carteira, economia) => {
-    extrato.push("Saldo Atual: " + carteira + " reais. \n");
+const atualizaCarteira = (id, carteira, economia) => {
+    extrato += "Saldo Atual: " + carteira + " reais. \n";
     //Se o valor final for maior que zero, tire o valor da carteira
     if((carteira - id >= 0) && (id != NaN)) {
         carteira -= id;
-        extrato.push(id + " reais debitados na sua conta \n");
+        extrato += id + " reais debitados na sua conta \n";
         //se o valor for menor que o valor que queremos economizar, deixe o botao vermelho
         if(carteira <= economia){
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
