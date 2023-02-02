@@ -1,7 +1,9 @@
 import {
     onEvent,
     getProperty,
-    setProperty
+    getPropertyValue,
+    setProperty,
+    setPropertyValue
 } from './lib/code.org.js';
 
 let carteira = 0; 
@@ -13,42 +15,45 @@ let economia = 0;
 
 //carrega o valor digitado na carteira e limpa os campos de input de economia e carteira
 onEvent("reset", "click", () => {
-    carteira = document.querySelector("#dinheiro").value;
-    economia = document.querySelector("#economias").value;
+    carteira = getPropertyValue("dinheiro");
+    economia = getPropertyValue("economias");
+    console.log(carteira);
+    console.log(economia);
     extrato = ""; 
     cleanValue();  
-    document.querySelector("#wallet").innerHTML = carteira;
-    document.querySelector("#dinheiro").value = " ";
-    document.querySelector("#economias").value = " ";
+    setProperty("wallet", carteira);
+    setPropertyValue("dinheiro", "");
+    setPropertyValue("economias","");
     document.querySelector("#wallet-button").style.backgroundColor = "#111827";     
+    
 })
 
 
 //Quando o botao comida é clicado exucuta 
 onEvent("comida","click", () =>{
     //pega o valor do input para reduzir da carteira
-    let comida = document.querySelector("#food").value;
+    let comida = getPropertyValue("food");
     //chama a funcao para atualizar a carteira (ver funcao)
     carteira = atualizaCarteira(comida, carteira, economia);
     //atualiza o valor da carteira 
-    document.querySelector("#wallet").innerHTML = carteira;
+    setProperty("wallet", carteira);
     //limpa o valor digitado no input (ver funcao)
     cleanValue();  
 });
 
 
 onEvent("brinquedo","click", () => {
-    let brinquedo = document.querySelector("#fun").value; 
+    let brinquedo = getPropertyValue("fun"); 
     carteira = atualizaCarteira(brinquedo, carteira, economia);
-    document.querySelector("#wallet").innerHTML = carteira;
+    setProperty("wallet", carteira);
     cleanValue();  
 })
 
 
 onEvent("saude","click", () => {
-    let saude =  document.querySelector("#health").value;
+    let saude = getPropertyValue("health"); 
     carteira = atualizaCarteira(saude, carteira, economia);
-    document.querySelector("#wallet").innerHTML = carteira;
+    setProperty("wallet", carteira);
     cleanValue(); 
 })
 
@@ -61,9 +66,9 @@ onEvent("go-extrato", "click", () => {
 
 //limpa o valor digitado no input
 const cleanValue = () => {
-    document.querySelector("#food").value = " ";
-    document.querySelector("#fun").value = " ";
-    document.querySelector("#health").value = " ";
+    setPropertyValue("food","");
+    setPropertyValue("fun","");
+    setPropertyValue("health","");
 }
 
 
