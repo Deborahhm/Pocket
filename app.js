@@ -77,8 +77,7 @@ const atualizaCarteira = (id, carteira, economia) => {
         //se o valor for menor que o valor que queremos economizar, deixe o botao vermelho
         if(carteira <= economia){
             document.querySelector("#wallet-button").style.backgroundColor = "#FA3E4C";
-            alert("Você Gastou mais do que queria economizar");
-            
+            alert("Você Gastou mais do que queria economizar");        
         }
         //Se o valor for menor que zero nao debite nada, pq obviamente voce nao tem dinheiro.
     }else if((condicao < 0) &&(id != NaN)){
